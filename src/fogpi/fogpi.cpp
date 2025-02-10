@@ -140,7 +140,15 @@ char *request_string(const char *_message)
 
 int random_int(int _min, int _max)
 {
-    return _min + rand() % (_max + 1);
+    if (_max < _min)
+        return _min;
+    
+    if (_min == _max)
+        return _min;
+    
+    int range = _max - _min;
+
+    return _min + rand() % range;
 }
 
 float random_float(float _min, float _max)
