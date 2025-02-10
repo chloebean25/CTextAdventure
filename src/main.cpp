@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
     int a[] = {1,2,3,4};
 
-    printf("%s %c %i %i %i\n", message, e, strlen(message), *(message+1), *(message+3));
-
+    printf("%s\n", message);
+  
     return 0;
 }
