@@ -146,7 +146,7 @@ int random_int(int _min, int _max)
     if (_min == _max)
         return _min;
     
-    int range = _max - _min;
+    int range = 1 + _max - _min;
 
     return _min + rand() % range;
 }
