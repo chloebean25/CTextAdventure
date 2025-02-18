@@ -2,7 +2,8 @@
 
 #include "fogpi/Math.hpp"
 
-class Room {};
+// forward defin
+class Room;
 
 class Entity {
 public:
