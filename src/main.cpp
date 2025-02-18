@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include "Dice.hpp"
+#include "Entity.hpp"
 
 int Add(int &_a, int &_b)
 {
