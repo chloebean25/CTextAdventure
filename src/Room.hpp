@@ -19,6 +19,7 @@ public:
     std::vector<Entity*>& GetMonsters() { return m_monsters; }
     const std::vector<std::vector<char>>& GetMap() { return m_map; }
     char GetLocation(Vector2D _pos);
+    void SetLocation(Vector2D _pos, char _char);
     void ClearLocation(Vector2D _pos);
     void OpenDoor(Vector2D _pos);
 private:

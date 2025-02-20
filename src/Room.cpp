@@ -132,6 +132,11 @@ char Room::GetLocation(Vector2D _pos)
     return m_map[_pos.y][_pos.x];
 }
 
+void Room::SetLocation(Vector2D _pos, char _char)
+{
+    m_map[_pos.y][_pos.x] = _char;
+}
+
 void Room::ClearLocation(Vector2D _pos)
 {
     if (_pos.y >= m_map.size())

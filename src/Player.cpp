@@ -49,6 +49,25 @@ void Player::Update()
         room->ClearLocation(tryPos);
     }
 
+    if (room->GetLocation(tryPos) == 'L')
+    {
+        if (m_keyCount <= 0)
+        {
+            printf("NO KEY!!!\n");
+            return;
+        }
+
+        m_keyCount--;
+        room->SetLocation(tryPos, 'D');
+        return;
+    }
+
+    // open door
+    if (room->GetLocation(tryPos) == 'D')
+    {
+        room->OpenDoor(tryPos);
+    }
+
     if (room->GetLocation(tryPos) == ' ') 
         m_position = tryPos;
     
