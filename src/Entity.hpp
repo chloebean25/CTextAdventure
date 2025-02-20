@@ -9,9 +9,14 @@ class Entity {
 public:
     Room *room;
 
+    void Init(Vector2D _position) { m_position = _position; }
+
     virtual void Start() {}
     virtual void Update() {}
-private:
+
+    char Draw() { return m_character; }
+    Vector2D GetPosition() { return m_position; }
+protected:
     Vector2D m_position;
     char m_character;
     //char m_color = '[0;31m';

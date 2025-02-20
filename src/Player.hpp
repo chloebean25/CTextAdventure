@@ -5,8 +5,8 @@
 class Player : public Entity
 {
 public:
-    void Start() {}
-    void Update() {}
+    void Start();
+    void Update();
 private:
     int m_keyCount = 0;
 };

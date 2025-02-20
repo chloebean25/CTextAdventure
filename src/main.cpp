@@ -14,18 +14,11 @@
 #include "Entity.hpp"
 #include "Room.hpp"
 
-int Add(int &_a, int &_b)
-{
-    _a = _a * 2;
-    return _a + _b;
-}
-
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
 
     Room room;
-    return 0;
     room.Load("assets/level_1.map");
 
     while(true)

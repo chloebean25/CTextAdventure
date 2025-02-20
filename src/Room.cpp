@@ -77,7 +77,7 @@ void Room::Load(std::string _path)
                 if (m_player == nullptr)
                     m_player = new Player();
                 
-                m_player->Init(x, y);
+                m_player->Init(Vector2D(x, y));
                 m_player->Start();
                 m_map[y][x] = ' ';
             }
