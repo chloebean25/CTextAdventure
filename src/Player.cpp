@@ -19,6 +19,38 @@ void Player::Update()
              directionInput != 's' &&
              directionInput != 'd');
     
+    Vector2D direction(0.0f);
+
+    switch (directionInput)
+    {
+    case 'w':
+        direction = {0.0f, -1.0f};
+        break;
+    case 'a':
+        direction = {-1.0f, 0.0f};
+        break;
+    case 's':
+        direction = {0.0f, 1.0f};
+        break;
+    case 'd':
+        direction = {1.0f, 0.0f};
+        break;
+    default:
+        direction = {0.0f, 1.0f};
+        break;
+    }
+
+    Vector2D tryPos = m_position + direction;
+
+    // check for a key
+    if (room->GetLocation(tryPos) == 'K')
+    {
+        m_keyCount++;
+        room->ClearLocation(tryPos);
+    }
+
+    if (room->GetLocation(tryPos) == ' ') 
+        m_position = tryPos;
     
     printf("%c\n", directionInput);
 }
