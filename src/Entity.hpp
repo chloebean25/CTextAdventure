@@ -16,7 +16,7 @@ public:
 
     char Draw() { return m_character; }
     Vector2D GetPosition() { return m_position; }
-    const Stats& GetStats() { return m_stats;}
+    const Stats& GetStats() {return m_stats;}
 protected:
     Vector2D m_position;
     char m_character;

@@ -1,5 +1,5 @@
 #include "Room.hpp"
-
+#include "Monster.hpp"
 #include "Player.hpp"
 
 #include <fstream>
@@ -10,12 +10,11 @@ void Room::Load(std::string _path)
     m_map.clear();
     m_doors.clear();
 
-    for (Entity* monster : m_monsters)
+    for(Entity* monster:m_monsters)
     {
         delete monster;
         monster = nullptr;
     }
-
     m_monsters.clear();
 
     std::ifstream file;
@@ -99,13 +98,16 @@ void Room::Load(std::string _path)
                     doorCount++;
                 }
             }
-
-            if (m_map[y][x] == 'M')
+            if(m_map[y][x]=='M')
             {
+                Entity* monster = (Entity*)new Monster();
+                m_monsters.push_back(monster);
 
-
-                // clear
+                monster->Init(Vector2D(x,y));
+                monster-> Start();
+                //clear
                 m_map[y][x] = ' ';
+                
             }
         }
     }
@@ -114,14 +116,12 @@ void Room::Load(std::string _path)
 void Room::Update()
 {
     Draw();
-
     if (m_player != nullptr)
     {
         /*if (((Player*)m_player)->health <= 0)
         {
 
         }
-        
         m_player->room = this;
         m_player->Update();*/
 
@@ -129,21 +129,21 @@ void Room::Update()
 
         if(player.health <= 0)
         {
-            // handle death
+            //handle death
             exit(0);
-        }
 
+        }
         player.room = this;
         player.Update();
     }
 
-    for (Entity* monster : m_monsters)
+    for ( Entity* monster : m_monsters)
     {
         monster->room = this;
         monster->Update();
+
     }
 }
-
 void Room::Draw()
 {
     for (int y = 0; y < m_map.size(); y++)
@@ -167,6 +167,9 @@ char Room::GetLocation(Vector2D _pos)
     if (m_player != nullptr)
         if (m_player->GetPosition() == _pos)
             return m_player->Draw();
+    for (Entity* monster : m_monsters)
+        if(monster->GetPosition()== _pos)
+            return monster->Draw();
     
     return m_map[_pos.y][_pos.x];
 }
