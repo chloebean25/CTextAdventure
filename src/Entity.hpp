@@ -5,6 +5,7 @@
 // forward defin
 class Room;
 
+
 class Entity {
 public:
     Room *room;

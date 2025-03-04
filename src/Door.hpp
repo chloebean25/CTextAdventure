@@ -7,3 +7,4 @@ struct Door
     Vector2D pos;
     std::string path;
 };
+
