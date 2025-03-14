@@ -4,8 +4,11 @@
 #include <string>
 #include <vector>
 
+
 #include "Entity.hpp"
 #include "Door.hpp"
+
+class Monster;
 
 class Room {
 public:
@@ -16,7 +19,7 @@ public:
     bool StillPlaying() { return true; }
 
     Entity& GetPlayer() { return *m_player; }
-    std::vector<Entity*>& GetMonsters() { return m_monsters; }
+    Monster* GetMonsterAt(const Vector2D& position);
     const std::vector<std::vector<char>>& GetMap() { return m_map; }
     char GetLocation(Vector2D _pos);
     void ClearLocation(Vector2D _pos);
@@ -24,7 +27,7 @@ public:
     void OpenDoor(Vector2D _pos);
 private:
     Entity *m_player = nullptr;
-    std::vector<Entity*> m_monsters;
+    std::vector<Monster*> m_monsters;
     std::vector<std::vector<char>> m_map;
     std::vector<Door> m_doors;
 };

@@ -1,5 +1,6 @@
 #pragma once
 #include "Monster.hpp"
+#include "Stats.hpp"
 
 class Werewolf : public Monster
 {

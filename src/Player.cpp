@@ -1,7 +1,10 @@
 #include "Player.hpp"
-#include "fogpi/fogpi.hpp"
-
 #include "Room.hpp"
+#include "Monster.hpp"
+#include "Dice.hpp"
+#include "Combat.hpp"
+#include "Entity.hpp"
+#include <algorithm>
 
 void Player::Start()
 {
@@ -23,32 +26,23 @@ void Player::Update()
 
     switch (directionInput)
     {
-    case 'w':
-        direction = {0.0f, -1.0f};
-        break;
-    case 'a':
-        direction = {-1.0f, 0.0f};
-        break;
-    case 's':
-        direction = {0.0f, 1.0f};
-        break;
-    case 'd':
-        direction = {1.0f, 0.0f};
-        break;
-    default:
-        direction = {0.0f, 1.0f};
-        break;
+    case 'w': direction = {0.0f, -1.0f}; break;
+    case 'a': direction = {-1.0f, 0.0f}; break;
+    case 's': direction = {0.0f, 1.0f}; break;
+    case 'd': direction = {1.0f, 0.0f}; break;
+    default: direction = {0.0f, 1.0f}; break;
     }
 
     Vector2D tryPos = m_position + direction;
 
-    // check for a key
+    // Check for a key
     if (room->GetLocation(tryPos) == 'K')
     {
         m_keyCount++;
         room->ClearLocation(tryPos);
     }
 
+    // Check for locked door
     if (room->GetLocation(tryPos) == 'L')
     {
         if (m_keyCount <= 0)
@@ -62,14 +56,37 @@ void Player::Update()
         return;
     }
 
-    // open door
+    // Open door
     if (room->GetLocation(tryPos) == 'D')
     {
         room->OpenDoor(tryPos);
     }
 
+    
+    if (room->GetLocation(tryPos) == 'M') 
+    {
+        printf("You encountered a monster!\n");
+
+       
+        Monster* enemy = room->GetMonsterAt(tryPos);
+        if (enemy)
+        {
+            
+            Combat::Battle(this, enemy);  
+
+            
+            if (enemy->GetStats().health <= 0)
+            {
+                printf("You defeated the monster!\n");
+                room->ClearLocation(tryPos);
+            }
+        }
+        return;  
+    }
+
+    
     if (room->GetLocation(tryPos) == ' ') 
         m_position = tryPos;
-    
+
     printf("%c\n", directionInput);
 }

@@ -18,6 +18,7 @@
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
+    std::srand(std::time(0));
 
     Room room;
     room.Load("assets/level_1.map");
