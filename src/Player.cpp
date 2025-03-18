@@ -3,7 +3,6 @@
 #include "Monster.hpp"
 #include "Dice.hpp"
 #include "Combat.hpp"
-#include "Entity.hpp"
 #include <algorithm>
 
 void Player::Start()

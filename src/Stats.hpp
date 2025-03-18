@@ -11,6 +11,7 @@ struct Stats{
     int health = 10;
     int diceSides;
 
+    Stats() {}
     Stats(int hp, int dieSides) : health(hp), diceSides(dieSides){}
 
     int RollAttack()

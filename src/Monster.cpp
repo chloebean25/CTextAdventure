@@ -10,6 +10,3 @@ void Monster::Update()
 {
 
 }
-Stats& Monster::GetStats() {  
-    return m_stats;
-}
