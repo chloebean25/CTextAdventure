@@ -9,6 +9,7 @@ void Room::Load(std::string _path)
 {
     m_map.clear();
     m_doors.clear();
+    m_monsters.clear();
 
     std::ifstream file;
     file.open(_path);
@@ -44,6 +45,7 @@ void Room::Load(std::string _path)
         if (word == "map")
         {
             m_map.push_back(std::vector<char>());
+            int y =0;
             while(file >> word)
             {
                 if (word == "-2")
@@ -61,7 +63,12 @@ void Room::Load(std::string _path)
                     m_map[m_map.size() - 1].push_back(' ');
                 else
                     m_map[m_map.size() - 1].push_back(word[0]);
-                
+                if(word == "M")
+                {
+                    Monster* newMonster = new Monster(10,6);
+                    newMonster->SetPosition(Vector2D(m_map[y].size()-1,y));
+                    m_monsters.push_back(newMonster);
+                }
             }
         }
     }

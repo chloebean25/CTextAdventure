@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-
+#include "Monster.hpp"
 #include "Entity.hpp"
 #include "Door.hpp"
 
@@ -18,6 +18,7 @@ public:
 
     bool StillPlaying() { return true; }
 
+    
     Entity& GetPlayer() { return *m_player; }
     Monster* GetMonsterAt(const Vector2D& position);
     const std::vector<std::vector<char>>& GetMap() { return m_map; }
